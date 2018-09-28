@@ -1,9 +1,9 @@
 const express = require('express');
-const GenerationEngine = require('./engine.js');
+const GenerationEngine = require('./generation/engine.js');
 
 const app = express();
 const engine = new GenerationEngine();
-const port = 3000;
+
 
 
  engine.start();
@@ -12,8 +12,10 @@ const port = 3000;
      res.json({ dragon: engine.generation.newDragon() });
  });
 
- app.listen(port, () => console.log(`listening on port ${port}`));
 
+
+
+ module.exports = app;
 
 
  // setTimeout(() => {
@@ -22,7 +24,7 @@ const port = 3000;
 
 
 // For building purposes step 2
-/*const Generation = require('./generation.js');
+/*const Generation = require('./index.js');
 
  const generation = new Generation();
 
