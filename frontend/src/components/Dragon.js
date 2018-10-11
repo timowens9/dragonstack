@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
+import {Button} from 'react-bootstrap';
+import DragonAvatar from './DragonAvatar';
 
 const DEFAULT_DRAGON = {
-    dragonId:'',
+    dragonId: '',
     generationId: '',
     nickname: '',
     birthdate: '',
     traits: []
 
 
-
 };
 
-class Dragon extends Component{
+class Dragon extends Component {
 
     state = {dragon: DEFAULT_DRAGON};
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchDragon();
     }
 
@@ -26,20 +27,18 @@ class Dragon extends Component{
             .catch(error => console.error('error', error));
     };
 
-        render()
-        {
-            const {generationId, dragonId, traits} = this.state.dragon;
+    render() {
 
-            return <div>
-                <span>G{generationId}. </span>
-                <span>I{dragonId}. </span>
-                {traits.map(trait => trait.traitValue).join(', ')}
-            </div>
-        }
+
+        return (
+            <div>
+                <Button onClick={this.fetchDragon}>New Dragon</Button>
+                <DragonAvatar dragon={this.state.dragon}/>
+            </div>);
+    }
 
 
 }
-
 
 
 export default Dragon;
